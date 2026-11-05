@@ -57,6 +57,7 @@ final class Pagination
         return $data;
     }
 
+    /** Requires pagination metadata before advancing to another response page. */
     private static function pagination(object $response): object
     {
         if (!method_exists($response, 'getPagination')) {

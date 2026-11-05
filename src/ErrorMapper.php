@@ -8,6 +8,7 @@ use Throwable;
 
 final class ErrorMapper
 {
+    /** Preserves mapped errors or extracts status, retry and request metadata from a transport failure. */
     public static function fromThrowable(Throwable $throwable): QubricsApiError
     {
         if ($throwable instanceof QubricsApiError) {

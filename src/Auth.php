@@ -31,6 +31,7 @@ final class Auth
         }
     }
 
+    /** Rejects credentials that cannot authenticate the requested API surface. */
     public static function assertApiKeySurface(string $apiKey, ApiKeySurface $expected): ApiKeySurface
     {
         $isMailboxKey = str_starts_with($apiKey, 'smx_mbx_');

@@ -16,6 +16,7 @@ use Qubrics\Core\ErrorMapper;
 use Qubrics\Core\Headers;
 use Qubrics\Core\QubricsApiError;
 
+/** Fails the public contract when an observable SDK guarantee breaks. */
 function expect(bool $condition, string $message): void
 {
     if (!$condition) {

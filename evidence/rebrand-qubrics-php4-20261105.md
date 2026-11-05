@@ -50,6 +50,8 @@ Logs: `/Users/rj/Desktop/GIT-REPOS/sendmux-php-core/.claude/artifacts/rebrand-qu
 
 ## Handback
 
+Remote review found no merge-blocking code issue, but reported docstring coverage of 42.86% against 80% for touched functions. Added brief contract documentation to the affected validation, error-mapping, pagination and test assertion functions; runtime behaviour is unchanged.
+
 Correctness: Package metadata, PSR-4 namespace, every exception reference and customer-facing runtime string renamed together; dependency and runtime control flow unchanged.
 
 Tests: Added public Composer contract, seen red then green; removed none.
