@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Sendmux\Core;
+namespace Qubrics\Core;
 
 use InvalidArgumentException;
 use GuzzleHttp\Middleware;
@@ -31,6 +31,7 @@ final class Auth
         }
     }
 
+    /** Rejects credentials that cannot authenticate the requested API surface. */
     public static function assertApiKeySurface(string $apiKey, ApiKeySurface $expected): ApiKeySurface
     {
         $isMailboxKey = str_starts_with($apiKey, 'smx_mbx_');
@@ -40,7 +41,7 @@ final class Auth
             : (str_starts_with($apiKey, 'smx_root_') ? ApiKeySurface::Root : null);
 
         if ($actual === null) {
-            throw new InvalidArgumentException('Sendmux API keys must start with smx_root_, smx_mbx_, or smx_agent_');
+            throw new InvalidArgumentException('Qubrics API keys must start with smx_root_, smx_mbx_, or smx_agent_');
         }
 
         $isCompatible = $actual === $expected

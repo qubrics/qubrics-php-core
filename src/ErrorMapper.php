@@ -2,15 +2,16 @@
 
 declare(strict_types=1);
 
-namespace Sendmux\Core;
+namespace Qubrics\Core;
 
 use Throwable;
 
 final class ErrorMapper
 {
-    public static function fromThrowable(Throwable $throwable): SendmuxApiError
+    /** Preserves mapped errors or extracts status, retry and request metadata from a transport failure. */
+    public static function fromThrowable(Throwable $throwable): QubricsApiError
     {
-        if ($throwable instanceof SendmuxApiError) {
+        if ($throwable instanceof QubricsApiError) {
             return $throwable;
         }
 
@@ -20,9 +21,9 @@ final class ErrorMapper
         $code = $throwable->getCode();
         $statusCode = is_int($code) && $code > 0 ? $code : null;
         $message = self::stringPath($payload, ['error', 'message'])
-            ?: ($throwable->getMessage() ?: 'Sendmux API request failed');
+            ?: ($throwable->getMessage() ?: 'Qubrics API request failed');
 
-        return new SendmuxApiError(
+        return new QubricsApiError(
             $statusCode,
             self::stringPath($payload, ['error', 'code']) ?? 'request_failed',
             $message,
@@ -36,12 +37,12 @@ final class ErrorMapper
     /**
      * @param array<string, list<string>|string> $headers
      */
-    public static function fromErrorResponse(mixed $response, int $statusCode, array $headers = []): SendmuxApiError
+    public static function fromErrorResponse(mixed $response, int $statusCode, array $headers = []): QubricsApiError
     {
-        return new SendmuxApiError(
+        return new QubricsApiError(
             $statusCode,
             self::responseString($response, ['getError', 'getCode']) ?? 'request_failed',
-            self::responseString($response, ['getError', 'getMessage']) ?? 'Sendmux API request failed',
+            self::responseString($response, ['getError', 'getMessage']) ?? 'Qubrics API request failed',
             self::responseBool($response, ['getError', 'getRetryable']) ?? self::defaultRetryable($statusCode),
             self::responseString($response, ['getMeta', 'getRequestId']) ?? self::header($headers, 'x-request-id'),
             $headers,
