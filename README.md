@@ -20,18 +20,16 @@ Run this command only after
 Until then, retain your existing Composer constraint.
 
 ```bash
-composer require qubrics/core:^3.0.0
+composer require qubrics/core:^3.0
 ```
 
-For version 3, replace `sendmux/core` with `qubrics/core` in `composer.json` and update helper imports to `Qubrics\Core`. Catch `QubricsApiError`.
+Before upgrading from 2.x, read the [PHP 3.0 migration guide](https://github.com/qubrics/qubrics-sdk/blob/main/packages/php/UPGRADING-3.0.md) for Composer package and PHP namespace changes. If you use 1.x, apply the [PHP 2.0 migration guide](https://github.com/qubrics/qubrics-sdk/blob/main/packages/php/UPGRADING.md) first.
 
-Upgrading from 1.x? Read the [PHP 2.0 migration guide](https://github.com/qubrics/qubrics-sdk/blob/main/packages/php/UPGRADING.md) before changing your Composer constraint.
-
-If your custom Guzzle client uses `FileCookieJar` or `SessionCookieJar`, back up its state and re-authenticate into a fresh jar when upgrading. Guzzle rejects old records without a boolean `HostOnly`. Do not guess that value. Default Qubrics API clients do not enable cookies. See the [upstream migration warning](https://github.com/guzzle/guzzle/security/advisories/GHSA-wm3w-8rrp-j577).
+If your custom Guzzle client uses `FileCookieJar` or `SessionCookieJar`, back up its state and re-authenticate into a fresh jar when upgrading. Guzzle rejects old records without a boolean `HostOnly`; do not guess that value. Default Qubrics API clients do not enable cookies. See the [upstream migration warning](https://github.com/guzzle/guzzle/security/advisories/GHSA-wm3w-8rrp-j577).
 
 ## Usage
 
-Use `qubrics/core` directly when you need the shared helper layer without a generated API client:
+Use `qubrics/core` directly when you need the shared helper layer without a generated API client.
 
 ```php
 <?php
@@ -79,7 +77,7 @@ For help, include the package name, version, API surface, and sanitised request 
 
 - SDK docs: [qubrics.com/docs/sdks/php](https://qubrics.com/docs/sdks/php)
 - API keys guide: [qubrics.com/docs/guides/api-keys](https://qubrics.com/docs/guides/api-keys)
-- Source repository: [github.com/qubrics/qubrics-php-core](https://github.com/qubrics/qubrics-php-core)
+- Source repository: [github.com/qubrics/qubrics-sdk](https://github.com/qubrics/qubrics-sdk)
 
 ## License
 

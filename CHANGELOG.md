@@ -1,12 +1,11 @@
 # Changelog
 
-## Unreleased
+## 3.0.0 (2026-11-06)
 
-### Changed
+### Qubrics rename
 
-- Move the package from `sendmux/core` to `qubrics/core`, with helpers in `Qubrics\Core`. Update your imports and replace `SendmuxApiError` with `QubricsApiError`.
-- Update SDK documentation links to qubrics.com.
-- Keep `smx_root_`, `smx_mbx_` and `smx_agent_` credential prefixes, HTTP headers, response fields and retry behaviour unchanged.
+- Publish as `qubrics/core` at 3.0.0 with `Qubrics\` namespaces.
+- Keep existing credential prefixes, OAuth/custom URL configuration and compatibility wire names.
 
 ## 2.1.1 (2026-09-16)
 
